@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: bf4ac80d-ee69-4ceb-be1d-21dea96a7519
+      url: 'https://tjanmanchi2.quarto.pub/carbon-emissions'
