@@ -2,7 +2,8 @@
 title: "About this site"
 ---
 
-My name is Tanay Janmanchi and I made this project. I will be a Highschool Junior in the fall of 2024. 
-Here is my email: janmanchit@gmail.com. 
+My name is Tanay Janmanchi and I made this project. I will be a Highschool Junior in the fall of 2024. Here is my email: janmanchit@gmail.com. 
+
 This is a heatmap of the Carbon Dioxide emissions by all the countries in the year 2019, here is the link to the GitHub Repository: https://github.com/tjanamnchi2/CO2-emissions.
+
 This project was created as a part of Kane’s Data Science Bootcamp: https://bootcamp.davidkane.info.
