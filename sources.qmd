@@ -4,4 +4,4 @@ format: html
 ---
 Here is the link to the Data-Set I used: https://www.kaggle.com/datasets/ulrikthygepedersen/co2-emissions-by-country
 
-There were a lot of Carbon emissions data based on region and countries grouped by socioeconomic status which I removed from the data to make it more simple. I did this buy using the 'filter()' command and filtering out any value in which the country code did not represent a valid country. This meant that any "country" which was filtered out had to be some sort of different type of grouping that did not represent what I was trying to convey in the heatmap.
+There were a lot of Carbon emissions data based on region and countries grouped by socioeconomic status which I removed from the data to make it more simple. I did this by using the 'filter()' command and filtering out any value in which the country code did not represent a valid country. This meant that any "country" which was filtered out had to be some sort of different type of grouping that did not represent what I was trying to convey in the heatmap.
