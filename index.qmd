@@ -1,0 +1,113 @@
+---
+title: "Carbon Dioxide Emissions by Country (2019)"
+author: "Tanay Janmanchi"
+---
+
+```{r}
+#| label: setup
+#| message: FALSE
+#| echo: FALSE
+library(tidyverse)
+library(leaflet)
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(viridis)
+library(maps)
+library(countrycode)
+library(mapproj)
+```
+
+```{r}
+#| label: data-download
+#| message: FALSE
+#| echo: FALSE
+
+emissions <- read_csv(file = "carbon-emissions.csv", show_col_types = FALSE)
+emissions <- emissions |> filter(year == 2019,
+                                 country_code != "WLD",
+                                 country_code != "IBT",
+                                 country_code != "LMY",
+                                 country_code != "MIC",
+                                 country_code != "IBD",
+                                 country_code != "UMC",
+                                 country_code != "LTE",
+                                 country_code != "EAS",
+                                 country_code != "EAP",
+                                 country_code != "TEA",
+                                 country_code != "HIC",
+                                 country_code != "OED",
+                                 country_code != "PST",
+                                 country_code != "EAR",
+                                 country_code != "ECS",
+                                 country_code != "LMC",
+                                 country_code != "WLD",
+                                 country_code != "TEC",
+                                 country_code != "ECA",
+                                 country_code != "SAS",
+                                 country_code != "NAC",
+                                 country_code != "TSA",
+                                 country_code != "EUU",
+                                 country_code != "MEA",
+                                 country_code != "EMU",
+                                 country_code != "ARB",
+                                 country_code != "LCN",
+                                 country_code != "TLA",
+                                 country_code != "MNA",
+                                 country_code != "TMN",
+                                 country_code != "LAC",
+                                 country_code != "IDA",
+                                 country_code != "SSF",
+                                 country_code != "TSS",
+                                 country_code != "FCS",
+                                 country_code != "AFE",
+                                 country_code != "AFW",
+                                 country_code != "CEB",
+                                 country_code != "CSS",
+                                 country_code != "IDB",
+                                 country_code != "LDC",
+                                 country_code != "LIC",
+                                 country_code != "OSS",
+                                 country_code != "PSS",
+                                 country_code != "SST",
+                                 country_code != "HBC",
+                                 country_code != "PRE",
+                                 country_code != "IDX",
+                                 country_code != "SSA",
+                                 country_code != "HPC")
+
+emissions$country_name <- countrycode(emissions$country_code, origin = "iso3c", destination = "country.name")
+emissions$country_name[emissions$country_code == "USA"] <- "USA"
+emissions$country_name[emissions$country_code == "GBR"] <- "UK"
+emissions$country_name[emissions$country_code == "DOM"] <- "DRC"
+world_map <- map_data("world")
+co2_map_data <- left_join(world_map, emissions, by = c("region" = "country_name"))
+
+
+```
+
+```{r}
+#| label: plot-heatmap
+#| message: false
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 12
+
+co2_map_data |> ggplot(aes(x = long, y = lat, group = group, fill = value)) +
+  geom_polygon(color = "black", linewidth = 0.2) +
+  scale_fill_viridis(name = "Emissions (KtCO2e)", 
+                     label = scales::comma, 
+                     option = "viridis", 
+                     direction = -1) +
+  labs(
+       subtitle = "Grey means data not available",
+       x = NULL,
+       y = NULL) + coord_map("mollweide", xlim = c(-180, 180), ylim = c(-90, 90)) + 
+  theme_void() +
+  theme(plot.subtitle = element_text(hjust = 0.5)) 
+
+```
+
+This graph is a heatmap that depicts the Carbon Dioxide Emissions in Kilotons by all the major countries in the world. The data was sourced from the United Nations Framework Convention on Climate Change (UNFCCC) and the International Energy Agency (IEA). After that, the data was visualized into a heatmap which shows emissions by country based on the color that is filled in. We can see that China (10,707,220 ktco2e) and the USA (4,817,720 ktco2e) emit the most Carbon Dioxide into our atmosphere, along with other countries in the Eastern Hemisphere known for high levels of industrialization and pollution, such as India, Russia and Indonesia.
+
