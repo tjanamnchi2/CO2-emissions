@@ -3,7 +3,7 @@ title: "Carbon Dioxide Emissions by Country (2019)"
 author: "Tanay Janmanchi"
 ---
 
-In the year 2019, 34,344,006 ktco2e were emitted into the atmosphere, have you ever wondered how did each country contribute to the Carbon Emissions? We can see that China (10,707,220 ktco2e) and the USA (4,817,720 ktco2e) emit the most Carbon Dioxide into our atmosphere, along with other countries in the Eastern Hemisphere known for high levels of industrialization and pollution, such as India, Russia and Indonesia. Therefore, we can come to the conclusion that Carbon emissions can be credited to industrialization.
+In the year 2019, 34,344,006 ktco2e were emitted into the atmosphere, have you ever wondered how did each country contributed to the Carbon Emissions? We can see that China (10,707,220 ktco2e) and the USA (4,817,720 ktco2e) emit the most Carbon Dioxide into our atmosphere, along with other countries in the Eastern Hemisphere known for high levels of industrialization and pollution, such as India, Russia and Indonesia. Therefore, we can come to the conclusion that Carbon emissions can be credited to industrialization.
 
 ```{r}
 #| label: setup
