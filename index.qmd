@@ -3,10 +3,13 @@ title: "Carbon Dioxide Emissions by Country (2019)"
 author: "Tanay Janmanchi"
 ---
 
+In the year 2019, 34,344,006 ktco2e were emitted into the atmosphere, have you ever wondered how did each country contribute to the Carbon Emissions? We can see that China (10,707,220 ktco2e) and the USA (4,817,720 ktco2e) emit the most Carbon Dioxide into our atmosphere, along with other countries in the Eastern Hemisphere known for high levels of industrialization and pollution, such as India, Russia and Indonesia. Therefore, we can come to the conclusion that Carbon emissions can be credited to industrialization.
+
 ```{r}
 #| label: setup
 #| message: FALSE
 #| echo: FALSE
+# loading in the libraries
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
@@ -22,8 +25,10 @@ library(mapproj)
 #| label: data-download
 #| message: FALSE
 #| echo: FALSE
-
-emissions <- read_csv(file = "carbon-emissions.csv", show_col_types = FALSE)
+# reading in the data
+emissions <- read_csv(file = "data/carbon-emissions.csv", 
+                      show_col_types = FALSE)
+# filtering out any bad/unuseful data
 emissions <- emissions |> filter(year == 2019,
                                  country_code != "WLD",
                                  country_code != "IBT",
@@ -76,10 +81,15 @@ emissions <- emissions |> filter(year == 2019,
                                  country_code != "SSA",
                                  country_code != "HPC")
 
+#importing in the map
 emissions$country_name <- countrycode(emissions$country_code, origin = "iso3c", destination = "country.name")
+
+#manually changing some of the country codes
 emissions$country_name[emissions$country_code == "USA"] <- "USA"
 emissions$country_name[emissions$country_code == "GBR"] <- "UK"
-emissions$country_name[emissions$country_code == "DOM"] <- "DRC"
+emissions$country_name[emissions$country_code == "DRC"] <- "DOM"
+
+#joining the map with the current data set
 world_map <- map_data("world")
 co2_map_data <- left_join(world_map, emissions, by = c("region" = "country_name"))
 
@@ -91,9 +101,12 @@ co2_map_data <- left_join(world_map, emissions, by = c("region" = "country_name"
 #| message: false
 #| echo: false
 #| warning: false
-#| fig-width: 15
-#| fig-height: 12
 
+# dimensions for graph
+#| fig-width: 20
+#| fig-height: 16
+
+#plot
 co2_map_data |> ggplot(aes(x = long, y = lat, group = group, fill = value)) +
   geom_polygon(color = "black", linewidth = 0.2) +
   scale_fill_viridis(name = "Emissions (KtCO2e)", 
@@ -103,10 +116,14 @@ co2_map_data |> ggplot(aes(x = long, y = lat, group = group, fill = value)) +
   labs(
        subtitle = "Grey means data not available",
        x = NULL,
-       y = NULL) + coord_map("mollweide", xlim = c(-180, 180), ylim = c(-90, 90)) + 
+       y = NULL, 
+       caption = "Source: UNFCC") + 
+  coord_map("mollweide", xlim = c(-180, 180), ylim = c(-90, 90)) + 
   theme_void() +
   theme(plot.subtitle = element_text(hjust = 0.5)) 
 
 ```
 
-How does each country contribute to the Carbon Emissions of the world? The data for this graph was sourced from the United Nations Framework Convention on Climate Change (UNFCCC) and the International Energy Agency (IEA). After that, the data was visualized into a heatmap which shows emissions by country based on the color that is filled in. We can see that China (10,707,220 ktco2e) and the USA (4,817,720 ktco2e) emit the most Carbon Dioxide into our atmosphere, along with other countries in the Eastern Hemisphere known for high levels of industrialization and pollution, such as India, Russia and Indonesia.
+
+```
+
