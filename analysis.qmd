@@ -87,6 +87,7 @@ ind_map_data |> ggplot(aes(x = long, y = lat, group = group, fill = Emissions)) 
 
 The Industrial Intensity Index an index that indicates the performance of various industrial sectors of the economy. In other words, it measures the overall country developedness and production of material goods by country. We can see here that countries such as China, India, Germany, Indonesia, Canada, Russia and America all have fairly high Industrial Index values. Some of these countries have high emission values as shown on the initial graph on the home page.
 
+
 ## Carbon Emissions by Year
 
 ```{r}
@@ -174,7 +175,7 @@ countries |>
              y = value,
              color = country_name,
              group = country_name)) +
-    geom_point() + 
+    geom_point(size = 0.5) + 
     geom_line() +
   scale_y_continuous(labels = scales::comma,
                      breaks = c(1500000,
