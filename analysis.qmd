@@ -144,7 +144,7 @@ world |>
     axis.ticks.x = element_line(color = "black"))
 ```
 
-In this graph, we see that the amount of carbon emitted every year since 1960 has increased steadily. This can be due to industrialization once again, since the production of carbon emitting items (cars, factories, plants) has been known to incerase every year. In the years 2008 and 1990, there were major economic setbacks which limited the production of goods and as a result, there were lower carbon emissions those years as shown on the graph.
+In this graph, we see that the amount of carbon emitted every year since 1960 has increased steadily. This can be due to industrialization once again, since the production of carbon emitting items (cars, factories, plants) has been known to increase every year. In the years 2008 and 1990, there were major economic setbacks which limited the production of goods and as a result, there were lower carbon emissions those years as shown on the graph.
 
 Additionally, here are the yearly Carbon emissions by country.
 
